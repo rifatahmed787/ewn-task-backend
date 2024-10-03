@@ -1,5 +1,3 @@
-
-
 const swaggerConfig = {
   openapi: '3.0.0',
   info: {
@@ -127,8 +125,48 @@ const swaggerConfig = {
         },
       },
     },
+    '/user/userinfo': {
+      get: {
+        summary: 'Get user profile information',
+        tags: ['User'],
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'User profile information fetched successfully',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/UserProfileResponse',
+                },
+              },
+            },
+          },
+          '401': {
+            description: 'Unauthorized - Invalid or missing token',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/ErrorResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   },
   components: {
+    securitySchemes: {
+      BearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
     schemas: {
       // Signup Schema with OTP Verification
       SignupWithOtpRequest: {
@@ -252,6 +290,47 @@ const swaggerConfig = {
           message: {
             type: 'string',
             example: 'Error occurred',
+          },
+        },
+      },
+      // User Profile Response Schema for Get Method
+      UserProfileResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'integer',
+            example: 1,
+          },
+          username: {
+            type: 'string',
+            example: 'john_doe',
+          },
+          email: {
+            type: 'string',
+            example: 'john.doe@example.com',
+          },
+          language: {
+            type: 'string',
+            example: 'en',
+          },
+          avatar: {
+            type: 'string',
+            example:
+              'https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png',
+          },
+          verified: {
+            type: 'boolean',
+            example: true,
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time',
+            example: '2023-10-02T14:48:00.000Z',
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time',
+            example: '2023-10-03T14:48:00.000Z',
           },
         },
       },
