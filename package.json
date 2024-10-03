@@ -1,7 +1,7 @@
 {
-  "name": "trendy-fashion",
+  "name": "ewn-server",
   "version": "1.0.0",
-  "description": "This is fashion shop management system",
+  "description": "This is a job task backend",
   "main": "src/server.ts",
   "scripts": {
     "test": "test",
@@ -57,8 +57,6 @@
     "dotenv": "^16.2.0",
     "eslint": "^8.42.0",
     "express": "^4.18.2",
-    "fcm-notify": "^1.0.1",
-    "firebase-admin": "^12.0.0",
     "http-status": "^1.6.2",
     "jsonwebtoken": "^9.0.0",
     "latest": "^0.2.0",
@@ -69,7 +67,6 @@
     "prisma": "^5.4.2",
     "react-hook-form": "^7.49.3",
     "sharp": "^0.32.6",
-    "stripe": "^14.5.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "ts-node": "^10.9.1",
