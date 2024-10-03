@@ -1,11 +1,13 @@
 import express from 'express'
+import { AuthRoute } from '../app/modules/auth/auth.route'
 
 const router = express.Router()
 
-const all_routes: any[] = [
- 
+const all_routes = [
+  { path: '/auth', router: AuthRoute },
 ]
 
+// MAPPING ALL THE ROUTE
 all_routes.map(item => router.use(item.path, item.router))
 
 export default router
