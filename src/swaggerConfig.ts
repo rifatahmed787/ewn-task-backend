@@ -7,7 +7,7 @@ const swaggerConfig = {
   },
   servers: [
     {
-      url: 'http://localhost:5000/api/v1',
+      url: 'https://ewn-server.vercel.app/api/v1',
     },
   ],
   paths: {
