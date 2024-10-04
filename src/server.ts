@@ -17,7 +17,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Swagger setup
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig, {
+  customCssUrl: '/swagger-ui.css', 
+}))
 // Routes
 app.use('/api/v1/', AllRoutes)
 

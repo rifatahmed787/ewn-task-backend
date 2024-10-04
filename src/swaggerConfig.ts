@@ -1,4 +1,8 @@
-const swaggerConfig = {
+import { SwaggerOptions } from "swagger-ui-express";
+
+const isProduction = process.env.NODE_ENV === 'production';
+const apiPath = isProduction ? './dist/app/modules/**/*.js' : './src/app/modules/**/*.ts';
+const swaggerConfig: SwaggerOptions = {
   openapi: '3.0.0',
   info: {
     title: 'EWN task API',
@@ -411,6 +415,7 @@ const swaggerConfig = {
       },
     },
   },
+  apis: [apiPath],
 }
 
 export default  swaggerConfig;
