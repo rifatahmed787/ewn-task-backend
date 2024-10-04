@@ -1,4 +1,8 @@
-const swaggerConfig = {
+import { SwaggerOptions } from "swagger-ui-express";
+
+const isProduction = process.env.NODE_ENV === 'production';
+const apiPath = isProduction ? './dist/app/modules/**/*.js' : './src/app/modules/**/*.ts';
+const swaggerConfig: SwaggerOptions = {
   openapi: '3.0.0',
   info: {
     title: 'EWN task API',
@@ -7,10 +11,11 @@ const swaggerConfig = {
   },
   servers: [
     {
-      url: 'http://localhost:5000/api/v1',
+      url: 'https://ewn-server.vercel.app/api/v1',
     },
   ],
   paths: {
+    // User Signup Route
     '/auth/signup': {
       post: {
         summary: 'Sign up a new user with OTP verification',
@@ -49,6 +54,7 @@ const swaggerConfig = {
         },
       },
     },
+    // User Login Route
     '/auth/login': {
       post: {
         summary: 'Login a user',
@@ -87,6 +93,7 @@ const swaggerConfig = {
         },
       },
     },
+    // Send OTP Route
     '/auth/send-otp': {
       post: {
         summary: 'Send OTP for verification',
@@ -125,6 +132,7 @@ const swaggerConfig = {
         },
       },
     },
+    // User Info Route
     '/user/userinfo': {
       get: {
         summary: 'Get user profile information',
@@ -147,6 +155,47 @@ const swaggerConfig = {
           },
           '401': {
             description: 'Unauthorized - Invalid or missing token',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/ErrorResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    // GitHub User Route
+    '/github/github-user': {
+      get: {
+        summary: 'Get GitHub user information by username',
+        tags: ['GitHub'],
+        parameters: [
+          {
+            name: 'username',
+            in: 'query',
+            required: true,
+            description: 'GitHub username to fetch user information',
+            schema: {
+              type: 'string',
+              example: 'octocat',
+            },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'GitHub user information fetched successfully',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/GithubUserResponse',
+                },
+              },
+            },
+          },
+          '404': {
+            description: 'GitHub user not found',
             content: {
               'application/json': {
                 schema: {
@@ -334,8 +383,39 @@ const swaggerConfig = {
           },
         },
       },
+      // GitHub User Response Schema
+      GithubUserResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'integer',
+            example: 583231,
+          },
+          avatar_url: {
+            type: 'string',
+            example: 'https://github.com/images/error/octocat_happy.gif',
+          },
+          username: {
+            type: 'string',
+            example: 'Octocat787',
+          },
+          name: {
+            type: 'string',
+            example: 'The Octocat',
+          },
+          location: {
+            type: 'string',
+            example: 'San Francisco',
+          },
+          bio: {
+            type: 'string',
+            example: 'A GitHub legend!',
+          },
+        },
+      },
     },
   },
+  apis: [apiPath],
 }
 
-export default swaggerConfig
+export default  swaggerConfig;

@@ -28,9 +28,9 @@ Trace:
 
 npm manifest: 
   {
-    "name": "trendy-fashion",
+    "name": "EWN Job Task",
     "version": "1.0.0",
-    "description": "This is fashion shop management system",
+    "description": "This is github user management system",
     "main": "src/server.ts",
     "scripts": {
       "test": "test",
