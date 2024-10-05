@@ -30,5 +30,5 @@ Welcome to the EWN API documentation! This API serves as the backend system for 
 ```
 ## Documetation URL
 ```
- https://ewn-server.vercel.app/api-docs
+ https://ewn-task-backend-1.onrender.com/api-docs/
 ```
