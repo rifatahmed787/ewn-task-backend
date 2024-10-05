@@ -16,6 +16,12 @@ Welcome to the EWN API documentation! This API serves as the backend system for 
 - Bcrypt
 - Nodemailer
 
+## How to run
+
+- Clone the repo
+- Run "npm i" for installation
+- Run "npm run dev" for running the backend server
+
 ## Features
 
 - Browse a vast collection of github user.

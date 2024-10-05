@@ -14,7 +14,6 @@ const router = express.Router()
 // SEND OTP ROUTE
 router.post(
   '/send-otp',
-  requestValidationHandler(otpSchema),
   OtpController.sendOtp
 )
 // SIGNUP ROUTE
